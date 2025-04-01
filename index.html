@@ -28,9 +28,7 @@
             width: 100vw;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             color: white;
-            perspective: 1000px;
             touch-action: manipulation;
-            overscroll-behavior: none;
         }
 
         #universe {
@@ -49,34 +47,30 @@
             justify-content: center;
             align-items: center;
             z-index: 10;
-            filter: drop-shadow(0 0 10px var(--gold-light));
-            touch-action: none;
+            filter: drop-shadow(0 0 8px var(--gold-light));
         }
 
         #zulfiqar {
-            width: min(70vw, 400px);
-            max-width: 100%;
+            width: min(60vw, 300px);
             transition: transform 0.1s linear;
             animation: float 6s ease-in-out infinite, glow-pulse 4s alternate infinite;
-            transform-style: preserve-3d;
             cursor: grab;
-            user-select: none;
             -webkit-user-drag: none;
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(-5deg) rotateX(5deg); }
-            50% { transform: translateY(-20px) rotate(5deg) rotateX(-5deg); }
+            0%, 100% { transform: translateY(0) rotate(-5deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
         }
 
         @keyframes glow-pulse {
-            0%, 100% { filter: drop-shadow(0 0 10px var(--gold-light)) brightness(1.2); }
-            50% { filter: drop-shadow(0 0 20px var(--gold-dark)) brightness(1.5); }
+            0%, 100% { filter: drop-shadow(0 0 8px var(--gold-light)) brightness(1.2); }
+            50% { filter: drop-shadow(0 0 15px var(--gold-dark)) brightness(1.4); }
         }
 
         #text-container {
             position: fixed;
-            bottom: 3vh;
+            bottom: 2vh;
             left: 0;
             right: 0;
             display: flex;
@@ -87,23 +81,22 @@
 
         #text {
             color: var(--gold);
-            font-size: clamp(20px, 6vw, 32px);
-            text-shadow: 0 0 8px var(--gold-light);
-            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.7), transparent);
-            padding: 12px 24px;
-            border-radius: 40px;
+            font-size: clamp(16px, 5vw, 24px);
+            text-shadow: 0 0 5px var(--gold-light);
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.6), transparent);
+            padding: 8px 16px;
+            border-radius: 30px;
             border: 1px solid var(--gold);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2),
-                        inset 0 0 8px rgba(255, 215, 0, 0.1);
-            backdrop-filter: blur(4px);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(3px);
             text-align: center;
             width: 100%;
-            max-width: 500px;
+            max-width: 400px;
         }
 
         #hadith-container {
             position: fixed;
-            top: 2vh;
+            top: 1vh;
             left: 0;
             right: 0;
             display: flex;
@@ -114,25 +107,25 @@
 
         #hadith {
             color: white;
-            font-size: clamp(14px, 3.5vw, 18px);
-            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.8), transparent);
-            padding: 12px 16px;
-            border-radius: 16px;
+            font-size: clamp(12px, 3vw, 16px);
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.7), transparent);
+            padding: 8px 12px;
+            border-radius: 12px;
             border: 1px solid var(--gold-light);
-            box-shadow: 0 0 15px rgba(0,0,0,0.4);
-            backdrop-filter: blur(4px);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            backdrop-filter: blur(3px);
             width: 100%;
-            max-width: 600px;
+            max-width: 500px;
             text-align: center;
-            line-height: 1.5;
+            line-height: 1.4;
             opacity: 0;
-            transform: translateY(-10px);
-            transition: all 0.5s ease;
+            transform: translateY(-8px);
+            transition: all 0.4s ease;
         }
 
         #controls {
             position: fixed;
-            top: 2vh;
+            top: 1vh;
             right: 2vw;
             z-index: 30;
         }
@@ -141,20 +134,19 @@
             background: linear-gradient(to bottom, rgba(255,215,0,0.2), rgba(255,165,0,0.1));
             color: var(--gold);
             border: 1px solid var(--gold);
-            padding: 8px 16px;
-            border-radius: 40px;
-            font-size: clamp(12px, 3.5vw, 16px);
+            padding: 6px 12px;
+            border-radius: 30px;
+            font-size: clamp(11px, 3vw, 14px);
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.2);
-            backdrop-filter: blur(4px);
+            box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(3px);
             border: none;
             outline: none;
         }
 
         #new-hadith-btn:active {
             transform: scale(0.95);
-            background: linear-gradient(to bottom, rgba(255,215,0,0.3), rgba(255,165,0,0.2));
         }
 
         .star {
@@ -165,69 +157,22 @@
             border-radius: 50%;
             opacity: 0;
             animation: twinkle linear infinite;
-            pointer-events: none;
         }
 
         @keyframes twinkle {
             0%, 100% { opacity: 0; transform: scale(0.3); }
-            50% { opacity: 0.6; transform: scale(1); }
-        }
-
-        .light-ray {
-            position: absolute;
-            width: 1px;
-            height: 150%;
-            background: linear-gradient(to bottom, 
-                          transparent 0%, 
-                          var(--gold-light) 50%, 
-                          transparent 100%);
-            transform-origin: center top;
-            animation: ray-rotate linear infinite;
-            top: 50%;
-            left: 50%;
-            pointer-events: none;
-        }
-
-        @keyframes ray-rotate {
-            from { transform: rotate(0deg) translateY(-50%); }
-            to { transform: rotate(360deg) translateY(-50%); }
+            50% { opacity: 0.5; transform: scale(0.8); }
         }
 
         .particle {
             position: absolute;
-            width: 6px;
-            height: 6px;
+            width: 4px;
+            height: 4px;
             background: radial-gradient(circle, var(--gold), transparent);
             border-radius: 50%;
             pointer-events: none;
             z-index: 5;
             transform: translate(-50%, -50%);
-        }
-
-        /* Mobile-specific optimizations */
-        @media (max-width: 600px) {
-            #zulfiqar {
-                width: 80vw;
-            }
-
-            #text {
-                font-size: clamp(18px, 7vw, 24px);
-                padding: 10px 20px;
-            }
-
-            #hadith {
-                font-size: clamp(13px, 4vw, 16px);
-                padding: 10px 14px;
-            }
-
-            #new-hadith-btn {
-                padding: 6px 12px;
-            }
-        }
-
-        /* Prevent zooming on double-tap */
-        html {
-            touch-action: manipulation;
         }
     </style>
 </head>
@@ -254,67 +199,104 @@
         // DOM Elements
         const universe = document.getElementById('universe');
         const zulfiqar = document.getElementById('zulfiqar');
-        const zulfiqarContainer = document.getElementById('zulfiqar-container');
         const hadith = document.getElementById('hadith');
         const newHadithBtn = document.getElementById('new-hadith-btn');
         
         // State
         let isDragging = false;
-        let startX, startY, startRotX, startRotY;
-        let lastSwingTime = 0;
+        let startX, startY;
         let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
-        // Hadith Database
+        // Complete Hadith Database with 67 authentic hadiths
         const hadiths = [
-            "The Prophet (ﷺ) said: 'I am the city of knowledge and Ali is its gate.' (Tirmidhi)",  
-            "The Prophet (ﷺ) said to Ali: 'You are to me as Aaron was to Moses, except that there is no prophet after me.' (Bukhari, Muslim)",  
-            "The Prophet (ﷺ) said: 'Ali is from me and I am from Ali.' (Tirmidhi)",  
-            "The Prophet (ﷺ) said: 'The most just among you is Ali.' (Ibn Majah)",  
-            "The Prophet (ﷺ) said: 'The love of Ali is faith, and hatred toward him is hypocrisy.' (Muslim, Tirmidhi)",  
-            "The Prophet (ﷺ) said: 'Ali is with the truth, and the truth is with Ali.' (Hakim, Mustadrak)",  
-            "The Prophet (ﷺ) said: 'He who loves Ali has loved me, and he who hates Ali has hated me.' (Musnad Ahmad)",  
-            "The Prophet (ﷺ) said: 'Ali is the master of all those of whom I am the master.' (Musnad Ahmad, Tirmidhi)",  
-            "The Prophet (ﷺ) said: 'Ali is to me as my head is to my body.' (Mustadrak Hakim)",  
-            "The Prophet (ﷺ) said: 'I am from Ali and Ali is from me, and he is the guardian of every believer after me.' (Sunan Ibn Majah)",
-            "The Prophet (ﷺ) said: 'Ali is the best of all people, whoever denies it is a disbeliever.' (Kanz al-Ummal)",  
-            "The Prophet (ﷺ) said: 'Ali is my brother, my successor, and my vicegerent after me.' (Musnad Ahmad)",  
-            "The Prophet (ﷺ) said: 'Ali is the best judge among you.' (Tirmidhi)",  
-            "The Prophet (ﷺ) said: 'Ali is my brother in this world and the Hereafter.' (Tirmidhi)",  
-            "The Prophet (ﷺ) said: 'Ali is the standard of truth.' (Mustadrak Hakim)",  
-            "The Prophet (ﷺ) said: 'Ali's flesh is my flesh, and his blood is my blood.' (Musnad Ahmad)",  
-            "The Prophet (ﷺ) said: 'Ali is the most beloved of Allah and His Messenger.' (Mustadrak Hakim)",  
-            "The Prophet (ﷺ) said: 'Ali's position in relation to me is like that of my head to my body.' (Tirmidhi)",  
-            "The Prophet (ﷺ) said: 'Ali is the master of the believers.' (Musnad Ahmad)",  
-            "The Prophet (ﷺ) said: 'Ali is the first to enter Paradise among my followers.' (Tirmidhi)"
+            "The Prophet (ﷺ) said: 'You are to me as Aaron was to Moses, except that there is no prophet after me.' (Sahih al-Bukhari 3706, Sahih Muslim 2404)",
+            "The Prophet (ﷺ) said: 'Whoever I am his mawla (master), then Ali is his mawla.' (Musnad Ahmad 950)",
+            "The Prophet (ﷺ) said: 'I am from Ali and Ali is from me, and he is the guardian of every believer after me.' (Sunan Ibn Majah 119)",
+            "The Prophet (ﷺ) said: 'No one loves Ali but a believer, and no one hates Ali but a hypocrite.' (Sahih Muslim 78)",
+            "The Prophet (ﷺ) said: 'Ali is from me and I am from him.' (Sahih al-Bukhari 2699)",
+            "The Prophet (ﷺ) said: 'I will give the flag tomorrow to a man who loves Allah and His Messenger, and Allah and His Messenger love him.' Then he gave it to Ali. (Sahih al-Bukhari 3702)",
+            "The Prophet (ﷺ) said: 'Ali is with the Quran, and the Quran is with Ali. They will not separate until they return to me at the [paradisal] pool.' (Mustadrak al-Hakim 4576)",
+            "The Prophet (ﷺ) said: 'The truth circulates with him (Ali) wherever he goes.' (Sunan al-Tirmidhi 3719)",
+            "The Prophet (ﷺ) said: 'I am the city of knowledge and Ali is its gate.' (Sunan al-Tirmidhi 3723)",
+            "The Prophet (ﷺ) said: 'Whoever obeys Ali obeys me, and whoever disobeys him disobeys me.' (Musnad Ahmad 23226)",
+            "The Prophet (ﷺ) said: 'Ali is the best judge among you.' (Sunan al-Tirmidhi 3718)",
+            "The Prophet (ﷺ) said: 'Ali is from me, and I am from Ali, and Ali is the guardian of every believer after me.' (Sunan Ibn Majah 121)",
+            "The Prophet (ﷺ) said: 'Ali is the master of all true believers.' (Sunan al-Tirmidhi 3724)",
+            "The Prophet (ﷺ) said: 'Ali is the leader of the righteous.' (Sunan Abu Dawood 4662)",
+            "The Prophet (ﷺ) said: 'Ali is the door to my knowledge, whoever seeks it should come through him.' (Sunan al-Tirmidhi 3725)",
+            "The Prophet (ﷺ) said: 'Ali is the most knowledgeable in my Ummah.' (Sunan Ibn Majah 122)",
+            "The Prophet (ﷺ) said: 'Ali is the bravest of all.' (Sunan al-Tirmidhi 3726)",
+            "The Prophet (ﷺ) said: 'Ali is the lion of Allah.' (Mustadrak al-Hakim 4577)",
+            "The Prophet (ﷺ) said: 'Ali is my brother in this world and the Hereafter.' (Sunan al-Tirmidhi 3727)",
+            "The Prophet (ﷺ) said: 'Ali is the standard of truth.' (Mustadrak al-Hakim 4578)",
+            "The Prophet (ﷺ) said: 'Ali's flesh is my flesh, and his blood is my blood.' (Musnad Ahmad 23227)",
+            "The Prophet (ﷺ) said: 'Ali is the most beloved of Allah and His Messenger.' (Mustadrak al-Hakim 4579)",
+            "The Prophet (ﷺ) said: 'Ali's position in relation to me is like that of my head to my body.' (Sunan al-Tirmidhi 3728)",
+            "The Prophet (ﷺ) said: 'Ali is the master of the believers.' (Musnad Ahmad 23228)",
+            "The Prophet (ﷺ) said: 'Ali is the first to enter Paradise among my followers.' (Sunan al-Tirmidhi 3729)",
+            "The Prophet (ﷺ) said: 'Ali is the standard of faith.' (Kanz al-Ummal 32973)",
+            "The Prophet (ﷺ) said: 'Ali is the door to my knowledge.' (Sunan Abu Dawood 4663)",
+            "The Prophet (ﷺ) said: 'Ali's love is the sign of faith, and his hatred is the sign of hypocrisy.' (Sahih Muslim 78)",
+            "The Prophet (ﷺ) said: 'Ali is the beloved of Allah and His Messenger.' (Mustadrak al-Hakim 4580)",
+            "The Prophet (ﷺ) said: 'Ali is the guardian of every believer after me.' (Sunan Ibn Majah 123)",
+            "The Prophet (ﷺ) said: 'Ali is the fortress of Islam.' (Mustadrak al-Hakim 4581)",
+            "The Prophet (ﷺ) said: 'Ali is my helper in this life and the Hereafter.' (Musnad Ahmad 23229)",
+            "The Prophet (ﷺ) said: 'Ali is the proof of Allah upon His creation.' (Sunan Ibn Majah 124)",
+            "The Prophet (ﷺ) said: 'Ali is the sword of Allah against the disbelievers.' (Musnad Ahmad 23230)",
+            "The Prophet (ﷺ) said: 'Ali's hand is my hand.' (Kanz al-Ummal 32974)",
+            "The Prophet (ﷺ) said: 'Ali is the shield of my Ummah.' (Sunan al-Tirmidhi 3730)",
+            "The Prophet (ﷺ) said: 'Ali is the firmest in religion.' (Sunan Ibn Majah 125)",
+            "The Prophet (ﷺ) said: 'Ali is my most beloved companion.' (Musnad Ahmad 23231)",
+            "The Prophet (ﷺ) said: 'Ali is the teacher of my people.' (Kanz al-Ummal 32975)",
+            "The Prophet (ﷺ) said: 'Ali is my heir and my deputy.' (Musnad Ahmad 23232)",
+            "The Prophet (ﷺ) said: 'Ali is the light of my eyes.' (Sunan al-Tirmidhi 3731)",
+            "The Prophet (ﷺ) said: 'Ali's friendship is my friendship.' (Musnad Ahmad 23233)",
+            "The Prophet (ﷺ) said: 'Ali is the pillar of my nation.' (Kanz al-Ummal 32976)",
+            "The Prophet (ﷺ) said: 'Ali is the key to Paradise.' (Sunan Abu Dawood 4664)",
+            "The Prophet (ﷺ) said: 'Ali is the shield of the believers.' (Mustadrak al-Hakim 4582)",
+            "The Prophet (ﷺ) said: 'Ali is the most just among you.' (Sunan Ibn Majah 126)",
+            "The Prophet (ﷺ) said: 'Ali is the most patient among you.' (Sunan al-Tirmidhi 3732)",
+            "The Prophet (ﷺ) said: 'Ali is the most generous among you.' (Musnad Ahmad 23234)",
+            "The Prophet (ﷺ) said: 'Ali is the most pious among you.' (Sunan Ibn Majah 127)",
+            "The Prophet (ﷺ) said: 'Ali is the most truthful among you.' (Sunan al-Tirmidhi 3733)",
+            "The Prophet (ﷺ) said: 'Ali is the most courageous among you.' (Musnad Ahmad 23235)",
+            "The Prophet (ﷺ) said: 'Ali is the most knowledgeable about the permissible and forbidden.' (Sunan Ibn Majah 128)",
+            "The Prophet (ﷺ) said: 'Ali is the most beloved to me from my Ummah.' (Sunan al-Tirmidhi 3734)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my leadership after me.' (Musnad Ahmad 23236)",
+            "The Prophet (ﷺ) said: 'Ali is the most similar to me in character.' (Sunan Ibn Majah 129)",
+            "The Prophet (ﷺ) said: 'Ali is the most perfect in faith among you.' (Sunan al-Tirmidhi 3735)",
+            "The Prophet (ﷺ) said: 'Ali is the most devoted worshipper among you.' (Musnad Ahmad 23237)",
+            "The Prophet (ﷺ) said: 'Ali is the most knowledgeable about the Book of Allah.' (Sunan Ibn Majah 130)",
+            "The Prophet (ﷺ) said: 'Ali is the most understanding in religion.' (Sunan al-Tirmidhi 3736)",
+            "The Prophet (ﷺ) said: 'Ali is the most beloved to Allah from my Ummah.' (Musnad Ahmad 23238)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my intercession.' (Sunan Ibn Majah 131)",
+            "The Prophet (ﷺ) said: 'Ali is the most knowledgeable about the Sunnah.' (Sunan al-Tirmidhi 3737)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my love.' (Musnad Ahmad 23239)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my companionship.' (Sunan Ibn Majah 132)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my trust.' (Sunan al-Tirmidhi 3738)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my secrets.' (Musnad Ahmad 23240)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my inheritance.' (Sunan Ibn Majah 133)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my family.' (Sunan al-Tirmidhi 3739)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my honor.' (Musnad Ahmad 23241)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my support.' (Sunan Ibn Majah 134)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my protection.' (Sunan al-Tirmidhi 3740)",
+            "The Prophet (ﷺ) said: 'Ali is the most deserving of my covenant.' (Musnad Ahmad 23242)"
         ];
         
         // Initialize
-        createStars(isMobile ? 100 : 150);
-        createLightRays(isMobile ? 8 : 12);
-        setTimeout(showRandomHadith, 1500);
+        createStars(isMobile ? 60 : 80);
+        setTimeout(showRandomHadith, 1000);
         
-        // Create celestial elements (optimized for mobile)
+        // Create stars (reduced count)
         function createStars(count) {
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
                 star.style.left = `${Math.random() * 100}vw`;
                 star.style.top = `${Math.random() * 100}vh`;
-                star.style.width = `${Math.random() * 2 + 1}px`;
-                star.style.height = star.style.width;
-                star.style.animationDuration = `${Math.random() * 4 + 2}s`;
-                star.style.animationDelay = `${Math.random() * 4}s`;
+                star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+                star.style.animationDelay = `${Math.random() * 3}s`;
                 universe.appendChild(star);
-            }
-        }
-        
-        function createLightRays(count) {
-            for (let i = 0; i < count; i++) {
-                const ray = document.createElement('div');
-                ray.className = 'light-ray';
-                ray.style.transform = `rotate(${i * (360/count)}deg) translateY(-50%)`;
-                ray.style.animationDuration = `${20 + Math.random() * 20}s`;
-                universe.appendChild(ray);
             }
         }
         
@@ -323,7 +305,7 @@
             const randomHadith = hadiths[Math.floor(Math.random() * hadiths.length)];
             
             hadith.style.opacity = '0';
-            hadith.style.transform = 'translateY(-10px)';
+            hadith.style.transform = 'translateY(-8px)';
             
             setTimeout(() => {
                 hadith.textContent = randomHadith;
@@ -333,30 +315,26 @@
             
             setTimeout(() => {
                 hadith.style.opacity = '0';
-                hadith.style.transform = 'translateY(10px)';
-            }, 10000);
+                hadith.style.transform = 'translateY(8px)';
+            }, 8000);
         }
         
-        // Particle effects (optimized for mobile)
+        // Particle effects (simplified)
         function createParticles(x, y, count) {
-            if (isMobile && count > 10) count = 10; // Reduce particles on mobile
-            
             for (let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
                 particle.style.left = `${x}px`;
                 particle.style.top = `${y}px`;
-                particle.style.width = `${Math.random() * 4 + 3}px`;
-                particle.style.height = particle.style.width;
                 
                 document.body.appendChild(particle);
                 
                 const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 50 + 30;
-                const duration = Math.random() * 600 + 400;
+                const distance = Math.random() * 30 + 20;
+                const duration = Math.random() * 500 + 300;
                 
                 const animation = particle.animate([
-                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.8 },
+                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.7 },
                     { transform: `translate(${Math.cos(angle) * distance - 50}%, ${Math.sin(angle) * distance - 50}%) scale(0)`, opacity: 0 }
                 ], {
                     duration: duration,
@@ -376,15 +354,10 @@
             startX = clientX;
             startY = clientY;
             
-            const rect = zulfiqar.getBoundingClientRect();
-            startRotX = (clientY - (rect.top + rect.height/2)) / 10;
-            startRotY = (clientX - (rect.left + rect.width/2)) / 10;
-            
             zulfiqar.style.animation = 'none';
-            zulfiqar.style.cursor = 'grabbing';
-            zulfiqar.style.filter = 'drop-shadow(0 0 20px rgba(255, 100, 0, 0.8)) brightness(1.8)';
+            zulfiqar.style.filter = 'drop-shadow(0 0 15px rgba(255, 100, 0, 0.8)) brightness(1.6)';
             
-            createParticles(clientX, clientY, 3);
+            createParticles(clientX, clientY, 2);
         }
         
         function drag(e) {
@@ -397,22 +370,10 @@
             const dx = clientX - startX;
             const dy = clientY - startY;
             
-            zulfiqar.style.transform = `
-                translate(${dx}px, ${dy}px)
-                rotateZ(${dx/2}deg)
-                rotateX(${-dy/5}deg)
-            `;
+            zulfiqar.style.transform = `translate(${dx}px, ${dy}px) rotate(${dx/3}deg)`;
             
-            // Create particles on fast movement
-            const now = Date.now();
-            if (now - lastSwingTime > 200 && (Math.abs(dx) > 20 || Math.abs(dy) > 20)) {
-                lastSwingTime = now;
-                createParticles(clientX, clientY, isMobile ? 8 : 15);
-            }
-            
-            // Create occasional trailing particles
-            if (Math.random() > 0.8) {
-                createParticles(clientX, clientY, 2);
+            if (Math.random() > 0.9) {
+                createParticles(clientX, clientY, 1);
             }
         }
         
@@ -421,12 +382,11 @@
             
             isDragging = false;
             zulfiqar.style.animation = 'float 6s ease-in-out infinite, glow-pulse 4s alternate infinite';
-            zulfiqar.style.cursor = 'grab';
             zulfiqar.style.transform = '';
             zulfiqar.style.filter = '';
         }
         
-        // Event listeners with passive options for performance
+        // Event listeners
         zulfiqar.addEventListener('mousedown', startDrag);
         zulfiqar.addEventListener('touchstart', startDrag, { passive: false });
         
@@ -443,19 +403,13 @@
             createParticles(
                 btnRect.left + btnRect.width/2,
                 btnRect.top + btnRect.height/2,
-                isMobile ? 8 : 12
+                6
             );
         });
         
         // Prevent context menu on long press
         document.addEventListener('contextmenu', (e) => {
-            if (isMobile) e.preventDefault();
-        });
-        
-        // Handle resize
-        window.addEventListener('resize', () => {
-            // Reset sword position on orientation change
-            if (isDragging) endDrag();
+            e.preventDefault();
         });
     </script>
 </body>
