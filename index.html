@@ -215,7 +215,7 @@
         let hadithTimeout;
         let currentHadithIndex = -1;
         
-        // Hadith Database
+        // Hadith Database (kept exactly as provided)
         const hadiths = [
             "The Prophet (ﷺ) said: 'You are to me as Aaron was to Moses, except that there is no prophet after me.' (Sahih al-Bukhari 3706, Sahih Muslim 2404)",
             "The Prophet (ﷺ) said: 'Whoever I am his mawla (master), then Ali is his mawla.' (Musnad Ahmad 950)",
@@ -293,7 +293,7 @@
     
         // Initialize
         createStars(50);
-        setTimeout(showRandomHadith, 800);
+        showRandomHadith(); // Show first hadith immediately
         
         // Create stars
         function createStars(count) {
@@ -308,40 +308,32 @@
             }
         }
         
-        // Hadith functions
+        // Hadith functions - completely rewritten for reliability
         function showRandomHadith() {
             // Clear any existing timeout
-            if (hadithTimeout) {
-                clearTimeout(hadithTimeout);
-            }
+            clearTimeout(hadithTimeout);
             
-            // Get a new random hadith that's different from the current one
+            // Get a new random hadith index
             let newIndex;
             do {
                 newIndex = Math.floor(Math.random() * hadiths.length);
             } while (newIndex === currentHadithIndex && hadiths.length > 1);
             
             currentHadithIndex = newIndex;
-            const randomHadith = hadiths[currentHadithIndex];
             
             // Fade out current hadith if visible
+            hadith.style.transition = 'all 0.3s ease';
             hadith.style.opacity = '0';
-            hadith.style.transform = 'translateY(-6px)';
+            hadith.style.transform = 'translateY(6px)';
             
             // After fade out completes, show new hadith
             setTimeout(() => {
-                hadith.textContent = randomHadith;
+                hadith.textContent = hadiths[currentHadithIndex];
                 hadith.style.opacity = '1';
                 hadith.style.transform = 'translateY(0)';
                 
-                // Set timeout to fade out after 30 seconds
-                hadithTimeout = setTimeout(() => {
-                    hadith.style.opacity = '0';
-                    hadith.style.transform = 'translateY(6px)';
-                    
-                    // After fade out, show another hadith
-                    setTimeout(showRandomHadith, 300);
-                }, 30000); // 30 seconds
+                // Set timeout to show next hadith after 30 seconds
+                hadithTimeout = setTimeout(showRandomHadith, 30000);
             }, 300);
         }
         
