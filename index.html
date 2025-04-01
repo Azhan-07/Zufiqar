@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Zulfiqar Sword - لَا سَيْفَ إِلَّا ذُو ٱلْفِقَار</title>
+    <title>Zulfiqar Sword</title>
     <style>
         :root {
             --gold: #FFD700;
-            --gold-light: rgba(255, 215, 0, 0.7);
+            --gold-light: rgba(255, 215, 0, 0.6);
             --gold-dark: #FF8C00;
             --bg-dark: #0a0a0a;
             --bg-darker: #050505;
@@ -47,11 +47,11 @@
             justify-content: center;
             align-items: center;
             z-index: 10;
-            filter: drop-shadow(0 0 8px var(--gold-light));
+            filter: drop-shadow(0 0 6px var(--gold-light));
         }
 
         #zulfiqar {
-            width: min(60vw, 300px);
+            width: min(55vw, 280px);
             transition: transform 0.1s linear;
             animation: float 6s ease-in-out infinite, glow-pulse 4s alternate infinite;
             cursor: grab;
@@ -60,17 +60,17 @@
 
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(-5deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
         }
 
         @keyframes glow-pulse {
-            0%, 100% { filter: drop-shadow(0 0 8px var(--gold-light)) brightness(1.2); }
-            50% { filter: drop-shadow(0 0 15px var(--gold-dark)) brightness(1.4); }
+            0%, 100% { filter: drop-shadow(0 0 6px var(--gold-light)) brightness(1.2); }
+            50% { filter: drop-shadow(0 0 12px var(--gold-dark)) brightness(1.3); }
         }
 
         #text-container {
             position: fixed;
-            bottom: 2vh;
+            top: 12vh;
             left: 0;
             right: 0;
             display: flex;
@@ -81,17 +81,17 @@
 
         #text {
             color: var(--gold);
-            font-size: clamp(16px, 5vw, 24px);
-            text-shadow: 0 0 5px var(--gold-light);
-            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.6), transparent);
-            padding: 8px 16px;
-            border-radius: 30px;
+            font-size: clamp(15px, 4.5vw, 22px);
+            text-shadow: 0 0 4px var(--gold-light);
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.5), transparent);
+            padding: 6px 14px;
+            border-radius: 25px;
             border: 1px solid var(--gold);
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-            backdrop-filter: blur(3px);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(2px);
             text-align: center;
             width: 100%;
-            max-width: 400px;
+            max-width: 350px;
         }
 
         #hadith-container {
@@ -107,46 +107,52 @@
 
         #hadith {
             color: white;
-            font-size: clamp(12px, 3vw, 16px);
-            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.7), transparent);
-            padding: 8px 12px;
-            border-radius: 12px;
+            font-size: clamp(11px, 2.8vw, 15px);
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.6), transparent);
+            padding: 6px 10px;
+            border-radius: 10px;
             border: 1px solid var(--gold-light);
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            backdrop-filter: blur(3px);
+            box-shadow: 0 0 8px rgba(0,0,0,0.25);
+            backdrop-filter: blur(2px);
             width: 100%;
-            max-width: 500px;
+            max-width: 450px;
             text-align: center;
-            line-height: 1.4;
+            line-height: 1.3;
             opacity: 0;
-            transform: translateY(-8px);
-            transition: all 0.4s ease;
+            transform: translateY(-6px);
+            transition: all 0.3s ease;
         }
 
         #controls {
             position: fixed;
-            top: 1vh;
-            right: 2vw;
+            bottom: 3vh;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
             z-index: 30;
+            padding: 0 5vw;
         }
 
         #new-hadith-btn {
             background: linear-gradient(to bottom, rgba(255,215,0,0.2), rgba(255,165,0,0.1));
             color: var(--gold);
             border: 1px solid var(--gold);
-            padding: 6px 12px;
-            border-radius: 30px;
-            font-size: clamp(11px, 3vw, 14px);
+            padding: 5px 10px;
+            border-radius: 25px;
+            font-size: clamp(10px, 2.8vw, 13px);
             cursor: pointer;
             transition: all 0.2s ease;
-            box-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
-            backdrop-filter: blur(3px);
+            box-shadow: 0 0 6px rgba(255, 215, 0, 0.15);
+            backdrop-filter: blur(2px);
             border: none;
             outline: none;
+            width: 100%;
+            max-width: 300px;
         }
 
         #new-hadith-btn:active {
-            transform: scale(0.95);
+            transform: scale(0.96);
         }
 
         .star {
@@ -161,13 +167,13 @@
 
         @keyframes twinkle {
             0%, 100% { opacity: 0; transform: scale(0.3); }
-            50% { opacity: 0.5; transform: scale(0.8); }
+            50% { opacity: 0.4; transform: scale(0.7); }
         }
 
         .particle {
             position: absolute;
-            width: 4px;
-            height: 4px;
+            width: 3px;
+            height: 3px;
             background: radial-gradient(circle, var(--gold), transparent);
             border-radius: 50%;
             pointer-events: none;
@@ -205,9 +211,8 @@
         // State
         let isDragging = false;
         let startX, startY;
-        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
-        // Complete Hadith Database with 67 authentic hadiths
+        // Hadith Database
         const hadiths = [
             "The Prophet (ﷺ) said: 'You are to me as Aaron was to Moses, except that there is no prophet after me.' (Sahih al-Bukhari 3706, Sahih Muslim 2404)",
             "The Prophet (ﷺ) said: 'Whoever I am his mawla (master), then Ali is his mawla.' (Musnad Ahmad 950)",
@@ -284,10 +289,10 @@
         ];
         
         // Initialize
-        createStars(isMobile ? 60 : 80);
-        setTimeout(showRandomHadith, 1000);
+        createStars(50);
+        setTimeout(showRandomHadith, 800);
         
-        // Create stars (reduced count)
+        // Create stars
         function createStars(count) {
             for (let i = 0; i < count; i++) {
                 const star = document.createElement('div');
@@ -305,7 +310,7 @@
             const randomHadith = hadiths[Math.floor(Math.random() * hadiths.length)];
             
             hadith.style.opacity = '0';
-            hadith.style.transform = 'translateY(-8px)';
+            hadith.style.transform = 'translateY(-6px)';
             
             setTimeout(() => {
                 hadith.textContent = randomHadith;
@@ -315,11 +320,11 @@
             
             setTimeout(() => {
                 hadith.style.opacity = '0';
-                hadith.style.transform = 'translateY(8px)';
-            }, 8000);
+                hadith.style.transform = 'translateY(6px)';
+            }, 7000);
         }
         
-        // Particle effects (simplified)
+        // Particle effects
         function createParticles(x, y, count) {
             for (let i = 0; i < count; i++) {
                 const particle = document.createElement('div');
@@ -330,11 +335,11 @@
                 document.body.appendChild(particle);
                 
                 const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 30 + 20;
-                const duration = Math.random() * 500 + 300;
+                const distance = Math.random() * 25 + 15;
+                const duration = Math.random() * 400 + 200;
                 
                 const animation = particle.animate([
-                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.7 },
+                    { transform: 'translate(-50%, -50%) scale(1)', opacity: 0.6 },
                     { transform: `translate(${Math.cos(angle) * distance - 50}%, ${Math.sin(angle) * distance - 50}%) scale(0)`, opacity: 0 }
                 ], {
                     duration: duration,
@@ -355,7 +360,7 @@
             startY = clientY;
             
             zulfiqar.style.animation = 'none';
-            zulfiqar.style.filter = 'drop-shadow(0 0 15px rgba(255, 100, 0, 0.8)) brightness(1.6)';
+            zulfiqar.style.filter = 'drop-shadow(0 0 12px rgba(255, 100, 0, 0.7)) brightness(1.5)';
             
             createParticles(clientX, clientY, 2);
         }
@@ -403,7 +408,7 @@
             createParticles(
                 btnRect.left + btnRect.width/2,
                 btnRect.top + btnRect.height/2,
-                6
+                5
             );
         });
         
